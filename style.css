@@ -1,27 +1,25 @@
-body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #0a3d0a; color: white; }
-#login, #game { max-width: 1200px; margin: 20px auto; text-align: center; }
-#table { background: radial-gradient(#1e5128, #0a3d0a); padding: 30px; border-radius: 30px; position: relative; min-height: 700px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-#dealerArea { text-align: center; margin-bottom: 40px; }
-.card { 
-  width: 80px; height: 112px; margin: 5px; display: inline-block; 
-  background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-  font-size: 36px; line-height: 112px; position: relative; transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+body { margin:0; background:#063; color:#fff; font-family:Arial; }
+#login, #game { max-width:1200px; margin:20px auto; text-align:center; }
+#table { background:#0a5; padding:30px; border-radius:30px; min-height:700px; position:relative; }
+#dealer { text-align:center; margin-bottom:40px; }
+.card {
+  width:80px; height:116px; margin:6px; display:inline-block;
+  background:white; color:black; border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.6); font-size:40px;
+  line-height:116px; text-align:center; position:relative;
+  transition:transform 0.6s ease-out; overflow:hidden;
 }
-.card.back { background: navy url('https://www.deckofcardsapi.com/static/img/back.png') center/cover; }
-.card.red { color: red; }
-.dealing { animation: dealCard 0.8s forwards; }
-@keyframes dealCard {
-  from { transform: translateY(-400px) rotate(-45deg) scale(0.5); opacity: 0; }
-  to { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+.card.red { color:red; }
+.card.back { background:#000080 url('https://www.deckofcardsapi.com/static/img/back.png') center/cover; }
+.deal { animation:deal 0.8s forwards; }
+@keyframes deal {
+  from { transform:translateY(-500px) rotate(-60deg); opacity:0; }
+  to { transform:translateY(0) rotate(0); opacity:1; }
 }
-@keyframes shuffle {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-.player { margin: 20px; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 15px; display: inline-block; min-width: 200px; }
-#chat { position: fixed; bottom: 20px; right: 20px; width: 320px; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 15px; }
-#messages { height: 300px; overflow-y: auto; margin-bottom: 10px; text-align: left; }
-button { padding: 12px 24px; margin: 8px; font-size: 16px; border: none; border-radius: 8px; background: #ffd700; color: black; cursor: pointer; }
-button:hover { background: #ffed4e; }
-#shareLink { font-weight: bold; color: #ffd700; }
+.player { margin:20px; padding:15px; background:rgba(0,0,0,0.4); border-radius:15px; display:inline-block; width:280px; vertical-align:top; }
+#controls { margin-top:30px; }
+button { padding:12px 20px; margin:8px; background:#ff0; color:#000; border:none; border-radius:8px; font-size:16px; cursor:pointer; }
+button:disabled { background:#666; cursor:not-allowed; }
+#chat { position:fixed; bottom:10px; right:10px; width:300px; background:rgba(0,0,0,0.8); padding:15px; border-radius:15px; }
+#messages { height:300px; overflow-y:auto; margin-bottom:10px; text-align:left; }
+#url { color:#ff0; word-break:break-all; }
