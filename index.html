@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multiplayer Blackjack</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
   <div id="login">
-    <h1>🎰 Multiplayer Blackjack</h1>
-    <input type="text" id="playerName" placeholder="Your name" value="Player1" />
-    <label><input type="checkbox" id="sharedMode" /> Party Mode (Shared Hand)</label>
-    <button onclick="joinGame()">Join Room</button>
-    <p>Share this link: <span id="shareLink"></span></p>
+    <h1>🃏 Multiplayer Blackjack</h1>
+    <input type="text" id="playerName" placeholder="Your name" value="Player">
+    <button onclick="join()">Join Room</button>
+    <p>Share: <strong id="url"></strong></p>
   </div>
 
   <div id="game" style="display:none">
     <div id="table">
-      <div id="dealerArea">
+      <div id="dealer">
         <h3>Dealer <span id="dealerScore"></span></h3>
         <div id="dealerHand"></div>
       </div>
-
-      <div id="playersArea"></div>
-
+      <div id="players"></div>
       <div id="controls">
-        <div id="betControls" style="display:none">
-          <input type="number" id="betAmount" min="10" value="50" />
-          <button onclick="placeBet()">Place Bet</button>
-          <button onclick="socket.emit('startGame')">Start Game</button>
+        <div id="betting">
+          <input type="number" id="bet" min="10" value="50">
+          <button onclick="socket.emit('placeBet', +bet.value)">Bet</button>
+          <button onclick="socket.emit('startGame')">Start</button>
         </div>
-        <div id="actionControls" style="display:none">
+        <div id="actions" style="display:none">
           <button onclick="socket.emit('hit')">Hit</button>
           <button onclick="socket.emit('stand')">Stand</button>
-          <button id="doubleBtn">Double</button>
-          <button id="splitBtn">Split</button>
+          <button id="double">Double</button>
+          <button id="split">Split</button>
         </div>
-        <div id="insuranceControls" style="display:none">
-          <button onclick="socket.emit('insurance', true)">Take Insurance</button>
-          <button onclick="socket.emit('insurance', false)">Decline</button>
+        <div id="insurance" style="display:none">
+          <button onclick="socket.emit('insurance', true)">Insurance</button>
+          <button onclick="socket.emit('insurance', false)">No</button>
         </div>
-        <button onclick="socket.emit('setSharedMode', !sharedMode)">Toggle Party Mode</button>
+        <button id="toggleMode">Toggle Party Mode (Shared Hand)</button>
+        <span id="modeStatus">Party Mode: OFF</span>
       </div>
     </div>
 
     <div id="chat">
       <div id="messages"></div>
-      <input type="text" id="chatInput" placeholder="Chat..." />
+      <input id="msgInput" placeholder="Chat...">
     </div>
   </div>
 
